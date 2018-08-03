@@ -1,16 +1,32 @@
 {
   "name": "rest-yt",
   "version": "1.0.0",
-  "description": "Basic crud in restify",
+  "description": "basic crud restify",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedrolgcs/Rest-YT.git"
+  },
   "keywords": [
-    "restify",
-    "mysql",
-    "es6"
+    "restify"
   ],
   "author": "Pedro H.",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedrolgcs/Rest-YT/issues"
+  },
+  "homepage": "https://github.com/pedrolgcs/Rest-YT#readme",
+  "devDependencies": {
+    "eslint": "^5.2.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "restify": "^7.2.1"
+  }
 }
