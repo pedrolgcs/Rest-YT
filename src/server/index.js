@@ -10,6 +10,8 @@ const cors = require('./cors')
 // chamada do método cors
 server.pre(cors.preflight)
 server.use(cors.actual)
+// plugin para passar parametros
+server.use(restify.plugins.bodyParser())
 
 // passo as rotas para o server
 routes(server)
