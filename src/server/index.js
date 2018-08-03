@@ -4,7 +4,14 @@ const restify = require('restify')
 const server = restify.createServer()
 // import o metodo de rotas
 const routes = require('../http/routes')
-// chamo o metodo de rotas e passo o server
+// importo o cors
+const cors = require('./cors')
+
+// chamada do método cors
+server.pre(cors.preflight)
+server.use(cors.actual)
+
+// passo as rotas para o server
 routes(server)
 
 module.exports = server
