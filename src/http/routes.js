@@ -1,8 +1,16 @@
+// importando categories
+const db = require('../services/mysql')
+
 // definindo as rotas
 const routes = (server) => {
   server.get('/categoria', (req, res, next) => {
-    res.send(['1', 'lalala'])
-    next()
+    db.categories().all().then(categories => {
+      res.send(categories)
+      next()
+    }).catch(error => {
+      res.send(error)
+      next()
+    })
   })
   server.post('/categoria', (req, res, next) => {
     const { name } = req.params
