@@ -7,12 +7,13 @@ const connection = mysqlServer.createConnection({
   database: 'restful_ws'
 })
 
+// funcao para tratar errors
 const errorHandler = (error, msg, rejectFunction) => {
   console.log(error)
   rejectFunction({ error: msg })
 }
 
-// passo a connection como dependica para categories
+// passo a connection e o errorHandler como dependica para categories
 const categoryModule = require('./categories')({ connection, errorHandler })
 
 module.exports = {
