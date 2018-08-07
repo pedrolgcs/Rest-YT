@@ -31,8 +31,8 @@ const categories = deps => {
     update: (id, name) => {
       return new Promise((resolve, reject) => {
         deps.connection.query('UPDATE categories set name = ? WHERE id = ?', [name, id], (error, results) => {
-          if (error) {
-            deps.errorHandler(error, `Falha ao inserir a categoria ${name}`, reject)
+          if (error || !results.affectedRows) {
+            deps.errorHandler(error, `Falha ao atualizar a categoria ${name}`, reject)
             return false
           }
           resolve({ category: { name, id } })
@@ -43,10 +43,10 @@ const categories = deps => {
     del: (id) => {
       return new Promise((resolve, reject) => {
         deps.connection.query('DELETE from categories WHERE id = ?', [id], (error, results) => {
-          if (error) {
+          if (error || !results.affectedRows) {
             deps.errorHandler(error, `Falha ao deletar categoria de id ${id}`, reject)
           }
-          resolve({ message: 'Categoria removida com sucesso' })
+          resolve({ message: 'Categoria removida com sucesso', affectedRows: results.affectedRows })
         })
       })
     }
