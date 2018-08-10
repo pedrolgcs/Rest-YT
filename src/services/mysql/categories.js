@@ -46,7 +46,7 @@ const categories = deps => {
           if (error || !results.affectedRows) {
             deps.errorHandler(error, `Falha ao deletar categoria de id ${id}`, reject)
           }
-          resolve({ message: 'Categoria removida com sucesso', affectedRows: results.affectedRows })
+          resolve({ category: {id}, message: 'Categoria removida com sucesso', affectedRows: results.affectedRows })
         })
       })
     }

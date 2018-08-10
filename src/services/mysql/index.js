@@ -10,15 +10,17 @@ const connection = mysqlServer.createConnection({
 
 // funcao para tratar errors
 const errorHandler = (error, msg, rejectFunction) => {
-  // e indicado salvar o error em um log
+  // indicado salvar o error em um log
   console.log(error)
   rejectFunction({ error: msg })
 }
 
-// passo a connection e o errorHandler como dependica para categories
+// take module categorie and users and pass for routes
 const categoryModule = require('./categories')({ connection, errorHandler })
+const userModule = require('./users')({ connection, errorHandler })
 
-// exporto os modulos de cada rota
+// exports modules for routes
 module.exports = {
-  categories: () => categoryModule
+  categories: () => categoryModule,
+  users: () => userModule
 }
