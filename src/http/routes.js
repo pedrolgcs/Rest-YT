@@ -3,6 +3,16 @@ const db = require('../services/mysql')
 
 // rotas de categories
 const routes = (server) => {
+  // autenticate
+  server.post('/autenticacao', async (req, res, next) => {
+    try {
+      const { email, password } = req.params
+      res.send(200, await db.auth().authenticate(email, password))
+    } catch (error) {
+      res.send(404, error)
+    }
+    next()
+  })
   // return categories
   server.get('/categoria', async (req, res, next) => {
     try {

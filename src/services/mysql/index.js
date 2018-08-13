@@ -18,9 +18,11 @@ const errorHandler = (error, msg, rejectFunction) => {
 // take module categorie and users and pass for routes
 const categoryModule = require('./categories')({ connection, errorHandler })
 const userModule = require('./users')({ connection, errorHandler })
+const authModule = require('./auth')({ connection, errorHandler })
 
 // exports modules for routes
 module.exports = {
   categories: () => categoryModule,
-  users: () => userModule
+  users: () => userModule,
+  auth: () => authModule
 }
