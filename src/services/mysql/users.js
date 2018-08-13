@@ -28,6 +28,7 @@ const users = deps => {
         })
       })
     },
+    // update user
     update: (id, password) => {
       return new Promise((resolve, reject) => {
         deps.connection.query('UPDATE users set password = ? WHERE id = ?', [sha1(password), id], (error, results) => {
@@ -39,6 +40,7 @@ const users = deps => {
         })
       })
     },
+    // delete user
     del: (id) => {
       return new Promise((resolve, reject) => {
         deps.connection.query('DELETE FROM users WHERE id = ?', [id], (error, results) => {

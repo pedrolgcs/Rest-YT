@@ -1,54 +1,19 @@
 // importando categories
 const db = require('../services/mysql')
+// importa modulo de categories
+const categories = require('./modules/categories')
 
 // rotas de categories
 const routes = (server) => {
+  // routes for categories
+  categories(server)
   // autenticate
   server.post('/autenticacao', async (req, res, next) => {
     try {
       const { email, password } = req.params
       res.send(200, await db.auth().authenticate(email, password))
     } catch (error) {
-      res.send(404, error)
-    }
-    next()
-  })
-  // return categories
-  server.get('/categoria', async (req, res, next) => {
-    try {
-      res.send(200, await db.categories().all())
-    } catch (error) {
-      res.send(error)
-    }
-    next()
-  })
-  // insert category
-  server.post('/categoria', async (req, res, next) => {
-    const { name } = req.params
-    try {
-      res.send(200, await db.categories().save(name))
-    } catch (error) {
-      res.send(400, error)
-    }
-    next()
-  })
-  // update category
-  server.put('/categoria', async (req, res, next) => {
-    const { id, name } = req.params
-    try {
-      res.send(201, await db.categories().update(id, name))
-    } catch (error) {
-      res.send(400, error)
-    }
-    next()
-  })
-  // delete category
-  server.del('/categoria', async (req, res, next) => {
-    const { id } = req.params
-    try {
-      res.send(200, await db.categories().del(id))
-    } catch (error) {
-      res.send(404, error)
+      res.send(422, error)
     }
     next()
   })
