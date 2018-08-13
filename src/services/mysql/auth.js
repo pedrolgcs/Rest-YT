@@ -1,7 +1,7 @@
 // module for crypt password
 const sha1 = require('sha1')
 // token
-var jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 // module for authenticate
 const auth = deps => {
   return {
@@ -17,7 +17,7 @@ const auth = deps => {
           // pegando o primeiro resultado da consulta
           const { email, id } = results[0]
           // criando o token para 24h
-          const token = jwt.sign({ email, id }, 'secret', { expiresIn: '24h' })
+          const token = jwt.sign({ email, id }, process.env.JWT_SECRET, { expiresIn: '24h' })
           resolve({ token: token })
         })
       })
