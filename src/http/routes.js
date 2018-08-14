@@ -7,7 +7,7 @@ const categories = require('./modules/categories')
 const routes = (server) => {
   // routes for categories
   categories(server)
-  // autenticate
+  // -------------- AUTHENTICATE --------------
   server.post('/autenticacao', async (req, res, next) => {
     try {
       const { email, password } = req.params
